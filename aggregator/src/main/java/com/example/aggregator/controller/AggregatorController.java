@@ -133,4 +133,23 @@ public class AggregatorController {
         log.info(message);
         return results;
     }
+
+    @GetMapping("/getAllPalindromes")
+    public List<Entry> getAllPalindromes() {
+
+        StopWatch sw = new StopWatch();
+        sw.start();
+        List<Entry> result = service.getAllPalindromes();
+        sw.stop();
+
+        long nanoSeconds = sw.getLastTaskTimeNanos();
+        String message = new StringBuilder().append("Retrieved entry for [")
+                .append("palindromes")
+                .append("] in ")
+                .append(nanoSeconds / 1000000.0)
+                .append("ms")
+                .toString();
+        log.info(message);
+        return result;
+    }
 }
